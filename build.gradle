@@ -1,0 +1,20 @@
+plugins {
+    id 'java'
+}
+
+group 'ru.mydearld'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation ("com.codeborne:selenide:7.14.0",
+            "org.junit.jupiter:junit-jupiter:5.14.2")
+    implementation ("com.codeborne:selenide:7.14.0")
+}
+
+test {
+    useJUnitPlatform()
+}
