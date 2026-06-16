@@ -7,14 +7,14 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class RegistrationFormTests extends TestsBase {
 
-      @Test
-      void successAllRegistrationFormFieldsPopulation() {
+    @Test
+    void successAllRegistrationFormFieldsPopulation() {
 
         open("/automation-practice-form");
         executeJavaScript("""
-                                 document.getElementById('fixedban')?.remove();
-                                 document.querySelector('footer')?.remove();
-                           """);
+                      document.getElementById('fixedban')?.remove();
+                      document.querySelector('footer')?.remove();
+                """);
         $("input[id=firstName]").setValue("Jane");
         $("input[id=lastName]").setValue("Smith");
         $("input[id=userEmail]").setValue("janesmith@mail.com");
@@ -34,27 +34,27 @@ public class RegistrationFormTests extends TestsBase {
         $("button[id=submit]").click();
 
         $("[id=example-modal-sizes-title-lg]").shouldHave(text("Thanks for submitting the form"));
-        $x("//div[@class='table-responsive']").shouldHave(text("Student Name Jane Smith"));
-        $x("//div[@class='table-responsive']").shouldHave(text("Student Email janesmith@mail.com"));
-        $x("//div[@class='table-responsive']").shouldHave(text("Gender Female"));
-        $x("//div[@class='table-responsive']").shouldHave(text("Mobile 8909678545"));
-        $x("//div[@class='table-responsive']").shouldHave(text("Date of Birth 15 March,1990"));
-        $x("//div[@class='table-responsive']").shouldHave(text("Subjects Test Subject"));
-        $x("//div[@class='table-responsive']").shouldHave(text("Hobbies Music"));
-        $x("//div[@class='table-responsive']").shouldHave(text("Picture my_png.png"));
-        $x("//div[@class='table-responsive']").shouldHave(text("Address Current Address"));
-        $x("//div[@class='table-responsive']").shouldHave(text("State and City Haryana Karnal"));
+        $(".table-responsive").$(byText("Student Name")).parent().shouldHave(text("Jane Smith"));
+        $(".table-responsive").$(byText("Student Email")).parent().shouldHave(text("janesmith@mail.com"));
+        $(".table-responsive").$(byText("Gender")).parent().shouldHave(text("Female"));
+        $(".table-responsive").$(byText("Mobile")).parent().shouldHave(text("8909678545"));
+        $(".table-responsive").$(byText("Date of Birth")).parent().shouldHave(text("15 March,1990"));
+        $(".table-responsive").$(byText("Subjects")).parent().shouldHave(text("Test Subject"));
+        $(".table-responsive").$(byText("Hobbies")).parent().shouldHave(text("Music"));
+        $(".table-responsive").$(byText("Picture")).parent().shouldHave(text("my_png.png"));
+        $(".table-responsive").$(byText("Address")).parent().shouldHave(text("Current Address"));
+        $(".table-responsive").$(byText("State and City")).parent().shouldHave(text("Haryana Karnal"));
 
     }
 
-      @Test
-      void requiredFieldsFormFieldsPopulation() {
+    @Test
+    void requiredFieldsFormFieldsPopulation() {
 
         open("/automation-practice-form");
         executeJavaScript("""
-                                 document.getElementById('fixedban')?.remove();
-                                 document.querySelector('footer')?.remove();
-                           """);
+                      document.getElementById('fixedban')?.remove();
+                      document.querySelector('footer')?.remove();
+                """);
         $("input[id=firstName]").setValue("Rob");
         $("input[id=lastName]").setValue("Robin");
         $("[id=genterWrapper]").find(byText("Male")).click();
@@ -62,34 +62,34 @@ public class RegistrationFormTests extends TestsBase {
         $("button[id=submit]").click();
 
         $("[id=example-modal-sizes-title-lg]").shouldHave(text("Thanks for submitting the form"));
-        $x("//div[@class='table-responsive']").shouldHave(text("Student Name Rob Robin"));
-        $x("//div[@class='table-responsive']").shouldHave(text("Gender Male"));
-        $x("//div[@class='table-responsive']").shouldHave(text("Mobile 8909678545"));
+        $(".table-responsive").$(byText("Student Name")).parent().shouldHave(text("Rob Robin"));
+        $(".table-responsive").$(byText("Gender")).parent().shouldHave(text("Male"));
+        $(".table-responsive").$(byText("Mobile")).parent().shouldHave(text("8909678545"));
 
-      }
+    }
 
-      @Test
-      void submittingEmptyFormFields() {
+    @Test
+    void submittingEmptyFormFields() {
 
         open("/automation-practice-form");
         executeJavaScript("""
-                                 document.getElementById('fixedban')?.remove();
-                                 document.querySelector('footer')?.remove();
-                           """);
+                      document.getElementById('fixedban')?.remove();
+                      document.querySelector('footer')?.remove();
+                """);
         $("button[id=submit]").click();
 
         $("[id=example-modal-sizes-title-lg]").shouldNotBe(visible);
 
-      }
+    }
 
-      @Test
-      void submittIngncorrectEmailFormat() {
+    @Test
+    void submittIngncorrectEmailFormat() {
 
         open("/automation-practice-form");
         executeJavaScript("""
-                                 document.getElementById('fixedban')?.remove();
-                                 document.querySelector('footer')?.remove();
-                           """);
+                      document.getElementById('fixedban')?.remove();
+                      document.querySelector('footer')?.remove();
+                """);
         $("input[id=firstName]").setValue("Jane");
         $("input[id=lastName]").setValue("Smith");
         $("input[id=userEmail]").setValue("почта");
@@ -103,5 +103,5 @@ public class RegistrationFormTests extends TestsBase {
 
         $("[id=example-modal-sizes-title-lg]").shouldNotBe(visible);
 
-      }
+    }
 }
